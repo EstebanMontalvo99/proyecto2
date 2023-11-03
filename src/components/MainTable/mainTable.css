@@ -1,0 +1,11 @@
+.btn-custome {
+  background-color: #337ab7;
+  color: white;
+}
+.btn-custome:hover {
+  background-color: #2d5578;
+  color: white;
+}
+.wider-column {
+  width: 45%;
+}
