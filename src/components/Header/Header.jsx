@@ -4,8 +4,8 @@ import './header.css';
 import { useRestaurantContext } from '../../RestaurantContext/RestaurantContext';
 
 const Header = () => {
-  const { setRestaurantPerPage, restaurantPerPage, setIsShow, setIsCreate, restaurants, setRestaurants, mainRestaurants, setMainRestaurants, filterApplied, setFilterApplied } = useRestaurantContext();
-
+  const { setRestaurantPerPage, restaurantPerPage, setIsShow, setIsCreate, restaurants, setRestaurants, mainRestaurants, setMainRestaurants } = useRestaurantContext();
+  const [filterApplied, setFilterApplied] = useState("Contiene");
   const handleCreate = () => {
     setIsShow(true);
     setIsCreate(true);
@@ -16,10 +16,14 @@ const Header = () => {
   };
 
   const handleFilterChange = (event) => {
-    const inputValue = event.target.value.toLowerCase();
+    const inputValue = event.target.value.toLowerCase().trim();
 
     if (inputValue.length === 0) {
+
       setRestaurants(mainRestaurants);
+      return;
+    }
+    if (restaurants.length === 0) {
       return;
     }
 
@@ -27,29 +31,21 @@ const Header = () => {
       setMainRestaurants(restaurants);
     }
 
-    switch (filterApplied) {
-      case "Contiene":
-        setRestaurants(mainRestaurants.filter(restaurant => restaurant.name.toLowerCase().includes(inputValue)));
-        break;
-      case "No Contiene":
-        setRestaurants(mainRestaurants.filter(restaurant => !restaurant.name.toLowerCase().includes(inputValue)));
-        break;
-      case "Igual":
-        setRestaurants(mainRestaurants.filter(restaurant => restaurant.name.toLowerCase() === inputValue));
-        break;
-      case "No Igual":
-        setRestaurants(mainRestaurants.filter(restaurant => restaurant.name.toLowerCase() !== inputValue));
-        break;
-      case "Empieza con":
-        setRestaurants(mainRestaurants.filter(restaurant => restaurant.name.toLowerCase().startsWith(inputValue)));
-        break;
-      case "Termina con":
-        setRestaurants(mainRestaurants.filter(restaurant => restaurant.name.toLowerCase().endsWith(inputValue)));
-        break;
-      default:
-        setRestaurants(mainRestaurants);
+    if (filterApplied === "Contiene") {
+      setRestaurants(mainRestaurants.filter(restaurant => restaurant.name.toLowerCase().includes(inputValue)));
+    } else if (filterApplied === "No Contiene") {
+      setRestaurants(mainRestaurants.filter(restaurant => !restaurant.name.toLowerCase().includes(inputValue)));
+    } else if (filterApplied === "Igual") {
+      setRestaurants(mainRestaurants.filter(restaurant => restaurant.name.toLowerCase() === inputValue));
+    } else if (filterApplied === "No Igual") {
+      setRestaurants(mainRestaurants.filter(restaurant => restaurant.name.toLowerCase() !== inputValue));
+    } else if (filterApplied === "Empieza con") {
+      setRestaurants(mainRestaurants.filter(restaurant => restaurant.name.toLowerCase().startsWith(inputValue)));
+    } else if (filterApplied === "Termina con") {
+      setRestaurants(mainRestaurants.filter(restaurant => restaurant.name.toLowerCase().endsWith(inputValue)));
+    } else {
+      setRestaurants(mainRestaurants);
     }
-
 
   };
   const handleFilterType = (e) => {
