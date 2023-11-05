@@ -49,7 +49,7 @@ Para borrar un registro, haz clic en el botón rojo debajo de la columna "Action
 
 - Filtrar
 
-Para filtrar, selecciona los parámetros de filtrado y escribe lo que estás buscando. Este proceso te permitirá buscar información específica dentro de la aplicación.
+Para filtrar, selecciona los parámetros de filtrado y escribe lo que estás buscando. Este proceso te permitirá buscar información específica dentro de la aplicación. Igualmente se podra ordenar los registros.
 ![ Filtrar](/public/Images/filterResults.png)
 
 - Paginación y numero de resultado
