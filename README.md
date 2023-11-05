@@ -2,6 +2,8 @@
 
 Esta prueba fue realizada basándose en las instrucciones de la empresa GO FOR CUSTOMER, que consiste en una aplicación web para realizar operaciones CRUD, obteniendo datos de una fake API proporcionada por [JSONPlaceholder](https://jsonplaceholder.typicode.com/).
 
+Si solo deseas ver el resultado te invito a: [Proyecto](https://deft-faloodeh-4aeff1.netlify.app), donde encontraras el resultado final.
+
 ## Instalación en entorno local
 
 Una vez descargado o copiado el repositorio en el servidor o computador local, es necesario ejecutar el comando **npm install** en el terminal (asegurándose de estar en la ruta del proyecto) para instalar las dependencias del proyecto.
