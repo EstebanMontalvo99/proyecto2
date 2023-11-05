@@ -10,6 +10,12 @@ export const RestaurantProvider = ({ children }) => {
   const [restaurants, setRestaurants] = useState([]);
   const [restaurantsShown, setRestaurantsShown] = useState();
   const [restaurantPerPage, setRestaurantPerPage] = useState(10);
+  const [mainRestaurants, setMainRestaurants] = useState(restaurants);
+  const [filterBy, setfilterBy] = useState("name");
+  const [filterApplied, setFilterApplied] = useState("Contiene");
+  const [restaurantIsCreated, setRestaurantIsCreated] = useState(false);
+  const [restaurantIsDeleted, setRestaurantIsDeleted] = useState(false);
+  const [restaurantIsUpdated, setRestaurantIsUpdated] = useState(false);
   const [isShow, setIsShow] = useState(false);
   const [isCreate, setIsCreate] = useState(false);
 
@@ -60,6 +66,16 @@ export const RestaurantProvider = ({ children }) => {
     setRestaurantsShown,
     restaurantPerPage,
     setRestaurantPerPage,
+    mainRestaurants, setMainRestaurants,
+    filterBy,
+    setfilterBy,
+    filterApplied, setFilterApplied,
+    restaurantIsCreated,
+    setRestaurantIsCreated,
+    restaurantIsDeleted,
+    setRestaurantIsDeleted,
+    restaurantIsUpdated,
+    setRestaurantIsUpdated,
     isShow,
     setIsShow,
     isCreate,

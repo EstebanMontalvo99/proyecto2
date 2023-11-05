@@ -7,12 +7,14 @@ const TableData = ({ restaurant }) => {
     setRestaurants,
     setIsShow,
     setUpdateRestaurant,
+    setRestaurantIsDeleted,
     /* deleteRestaurant */ } = useRestaurantContext();
 
   const handleDelete = () => {
     const newRestaurants = restaurants.filter(res => res.id !== restaurant.id);
     setRestaurants(newRestaurants);
     /*   deleteRestaurant(restaurant.id); */
+    setRestaurantIsDeleted(true);
   };
   const handleUpdate = () => {
     setIsShow(true);

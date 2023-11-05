@@ -12,6 +12,8 @@ const CustomModal = () => {
     isCreate,
     setIsCreate,
     updateRestaurant,
+    setRestaurantIsCreated,
+    setRestaurantIsUpdated
     /* updateRestaurantById,
     createNewRestaurant */
   } = useRestaurantContext();
@@ -29,8 +31,12 @@ const CustomModal = () => {
     const updatedRestaurants = [data, ...restaurants];
     setRestaurants(updatedRestaurants);
     /* createNewRestaurant(data); */
+
     setIsShow(false);
     setIsCreate(false);
+    setRestaurantIsCreated(true);
+
+
   };
   const onSubmitUpdate = (data) => {
     /* updateRestaurantById(updateRestaurant.id, data); */
@@ -43,6 +49,7 @@ const CustomModal = () => {
     }
     setIsShow(false);
     setIsCreate(false);
+    setRestaurantIsUpdated(true);
   };
 
   useEffect(() => {
