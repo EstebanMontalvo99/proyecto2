@@ -25,7 +25,7 @@ Posteriormente, en el terminal se mostrará una dirección local. Abre esta dire
 
   VITE v4.5.0  ready in 3866 ms
 
-  ➜  Local:  <span style="color:blue">http://localhost:5173/</span>
+  ➜  Local:  http://localhost:5173/
   ➜  Network: use --host to expose
   ➜  press h to show help
 ```
