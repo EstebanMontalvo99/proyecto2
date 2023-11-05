@@ -35,27 +35,27 @@ Posteriormente, en el terminal se mostrará una dirección local. Abre esta dire
 - Crear un registro
 
 Haz clic en el botón ubicado en la esquina superior derecha para crear un registro. Luego, se abrirá una pantalla donde deberás completar todos los datos y finalizar con el botón "Save Changes".
-![Crear ](/create.png)
+![Crear ](/public/Images/create.png)
 
 - Modificar un registro
 
 Para modificar un registro, haz clic en el botón azul de la columna "Action" del registro que deseas modificar. Posteriormente, se abrirá una pantalla de modificación y al finalizar los cambios, usa el botón "Save Changes".
-![Modificar usuario](/update.png)
+![Modificar usuario](/public/Images/update.png)
 
 - Eliminar un registro
 
 Para borrar un registro, haz clic en el botón rojo debajo de la columna "Actions".
-![Eliminar usuario](/deleteButton.png)
+![Eliminar usuario](/public/Images/deleteButton.png)
 
 - Filtrar
 
 Para filtrar, selecciona los parámetros de filtrado y escribe lo que estás buscando. Este proceso te permitirá buscar información específica dentro de la aplicación.
-![ Filtrar](/filterResults.png)
+![ Filtrar](/public/Images/filterResults.png)
 
 - Paginación y numero de resultado
 
 El número de resultados que se muestra puede ser cambiado con el botón de arriba a la izquierda.
-![ N Resultados](/showNresults.png)
+![ N Resultados](/public/Images/showNresults.png)
 
 La paginación se encuentra abajo a la derecha y podrá ser modificada con las flechas, lo que te permitirá navegar a través de los diferentes conjuntos de resultados.
-![ Paginación](/pagination.png)
+![ Paginación](/public/Images/pagination.png)
