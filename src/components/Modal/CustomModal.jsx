@@ -13,7 +13,9 @@ const CustomModal = () => {
     setIsCreate,
     updateRestaurant,
     setRestaurantIsCreated,
-    setRestaurantIsUpdated
+    setRestaurantIsUpdated,
+    mainRestaurants,
+    setMainRestaurants
     /* updateRestaurantById,
     createNewRestaurant */
   } = useRestaurantContext();
@@ -29,7 +31,9 @@ const CustomModal = () => {
 
   const onSubmitCreate = (data) => {
     const updatedRestaurants = [data, ...restaurants];
+    const updatedonMainRestaurants = [data, ...mainRestaurants];
     setRestaurants(updatedRestaurants);
+    setMainRestaurants(updatedonMainRestaurants);
     /* createNewRestaurant(data); */
 
     setIsShow(false);
@@ -40,13 +44,22 @@ const CustomModal = () => {
   };
   const onSubmitUpdate = (data) => {
     /* updateRestaurantById(updateRestaurant.id, data); */
+    if (mainRestaurants.length === 0) {
+      setMainRestaurants(restaurants);
+    }
+
     const index = restaurants.findIndex((restaurant) => restaurant.id === updateRestaurant.id);
-    if (index !== -1) {
+/*     const index2 = mainRestaurants.findIndex((restaurant) => restaurant.id === updateRestaurant.id);
+ */    if (index !== -1) {
+      /*       const updatedMainRestaurants = [...mainRestaurants];
+            updatedMainRestaurants[index2] = { ...updatedMainRestaurants, ...data }; */
       const updatedRestaurants = [...restaurants];
       updatedRestaurants[index] = { ...updateRestaurant, ...data };
-
+      /*       setMainRestaurants(updatedMainRestaurants); */
       setRestaurants(updatedRestaurants);
+
     }
+
     setIsShow(false);
     setIsCreate(false);
     setRestaurantIsUpdated(true);

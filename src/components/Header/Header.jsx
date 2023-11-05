@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import './header.css';
 import { useRestaurantContext } from '../../RestaurantContext/RestaurantContext';
@@ -6,6 +6,7 @@ import { useRestaurantContext } from '../../RestaurantContext/RestaurantContext'
 const Header = () => {
   const { setRestaurantPerPage, restaurantPerPage, setIsShow, setIsCreate, restaurants, setRestaurants, mainRestaurants, setMainRestaurants } = useRestaurantContext();
   const [filterApplied, setFilterApplied] = useState("Contiene");
+  const [column, setColumn] = useState("name");
   const handleCreate = () => {
     setIsShow(true);
     setIsCreate(true);
@@ -17,39 +18,46 @@ const Header = () => {
 
   const handleFilterChange = (event) => {
     const inputValue = event.target.value.toLowerCase().trim();
-
-    if (inputValue.length === 0) {
-
-      setRestaurants(mainRestaurants);
-      return;
-    }
-    if (restaurants.length === 0) {
-      return;
-    }
-
     if (mainRestaurants.length === 0) {
       setMainRestaurants(restaurants);
     }
 
+    if (inputValue.length === 0) {
+      setRestaurants(mainRestaurants);
+      return;
+    }
+
+    if (restaurants.length === 0) {
+      return;
+    }
+    console.log(inputValue);
+
+
     if (filterApplied === "Contiene") {
-      setRestaurants(mainRestaurants.filter(restaurant => restaurant.name.toLowerCase().includes(inputValue)));
+      setRestaurants(mainRestaurants.filter(restaurant => restaurant[column].toLowerCase().includes(inputValue)));
     } else if (filterApplied === "No Contiene") {
-      setRestaurants(mainRestaurants.filter(restaurant => !restaurant.name.toLowerCase().includes(inputValue)));
+      setRestaurants(mainRestaurants.filter(restaurant => !restaurant[column].toLowerCase().includes(inputValue)));
     } else if (filterApplied === "Igual") {
-      setRestaurants(mainRestaurants.filter(restaurant => restaurant.name.toLowerCase() === inputValue));
+      setRestaurants(mainRestaurants.filter(restaurant => restaurant[column].toLowerCase() === inputValue));
     } else if (filterApplied === "No Igual") {
-      setRestaurants(mainRestaurants.filter(restaurant => restaurant.name.toLowerCase() !== inputValue));
+
+      setRestaurants(mainRestaurants.filter(restaurant => restaurant[column].toLowerCase() !== inputValue));
     } else if (filterApplied === "Empieza con") {
-      setRestaurants(mainRestaurants.filter(restaurant => restaurant.name.toLowerCase().startsWith(inputValue)));
+      setRestaurants(mainRestaurants.filter(restaurant => restaurant[column].toLowerCase().startsWith(inputValue)));
     } else if (filterApplied === "Termina con") {
-      setRestaurants(mainRestaurants.filter(restaurant => restaurant.name.toLowerCase().endsWith(inputValue)));
+      setRestaurants(mainRestaurants.filter(restaurant => restaurant[column].toLowerCase().endsWith(inputValue)));
     } else {
       setRestaurants(mainRestaurants);
     }
-
   };
-  const handleFilterType = (e) => {
-    setFilterApplied(e.target.value);
+
+
+  const handleFilterType = (event) => {
+    setFilterApplied(event.target.value);
+  };
+  const handleColumn = (event) => {
+    setColumn(event.target.value);
+
   };
 
   return (
@@ -68,7 +76,7 @@ const Header = () => {
           </div>
           <div className="d-flex gap-2 align-items-center">
             <input type="text" className="form-control" placeholder='Filter in records' onChange={handleFilterChange} />
-            <select className='p-2' onChange={handleFilterType} >{filterApplied}
+            <select className='p-2' onChange={handleFilterType} >
               <option value="Contiene">Contiene</option>
               <option value="No Contiene">No Contiene</option>
               <option value="Igual">Igual</option>
@@ -76,7 +84,13 @@ const Header = () => {
               <option value="Empieza con">Empieza con</option>
               <option value="Termina con">Termina con</option>
             </select>
-            <button className='btn btn-custome'>Button</button>
+            <select className='p-2' onChange={handleColumn} >
+              <option value="name">Name</option>
+              <option value="address">Address</option>
+              <option value="PostCode">PostCode</option>
+              <option value="Rating">Rating</option>
+              <option value="typeOfFood">Tyoe of Food</option>
+            </select>
             <button onClick={handleCreate} className='btn btn-custome'><i className='bx bxs-duplicate' ></i></button>
           </div>
         </div>
