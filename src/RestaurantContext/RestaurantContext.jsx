@@ -22,42 +22,43 @@ export const RestaurantProvider = ({ children }) => {
   const url =
     "https://my-json-server.typicode.com/EstebanMontalvo99/fakeApi/restaurants";
 
-
   const getAllRestaurants = () => {
     axios
       .get(url)
       .then((res) => setRestaurants(res.data))
       .catch((err) => console.log(err));
   };
-  const createNewRestaurant = (data) => {
-    axios
-      .post(url, data)
-      .then((res) => {
-        setRestaurantCreated(true);
-        getAllRestaurants();
-      })
-      .catch((err) => {
-        setRestaurantCreated(false);
-        console.log(err);
-      });
-  };
-
-  const deleteRestaurant = (id) => {
-    const urlDelete = `${url}/${id}`;
-    axios
-      .delete(urlDelete)
-      .then((res) => getAllRestaurants())
-      .catch((err) => console.log(err));
-  };
-
-  const updateRestaurantById = (id, data) => {
-    const urlUpdate = `${url}/${id}`;
-    axios
-      .put(urlUpdate, data)
-      .then((res) => getAllRestaurants())
-      .catch((err) => console.log(err));
-  };
-
+  //Si la api tendria persistencia de datos se usarian estos metodos en vez de realizar los cambios localmente
+  /* 
+    const createNewRestaurant = (data) => {
+      axios
+        .post(url, data)
+        .then((res) => {
+          setRestaurantCreated(true);
+          getAllRestaurants();
+        })
+        .catch((err) => {
+          setRestaurantCreated(false);
+          console.log(err);
+        });
+    };
+  
+    const deleteRestaurant = (id) => {
+      const urlDelete = `${url}/${id}`;
+      axios
+        .delete(urlDelete)
+        .then((res) => getAllRestaurants())
+        .catch((err) => console.log(err));
+    };
+  
+    const updateRestaurantById = (id, data) => {
+      const urlUpdate = `${url}/${id}`;
+      axios
+        .put(urlUpdate, data)
+        .then((res) => getAllRestaurants())
+        .catch((err) => console.log(err));
+    };
+   */
   const contextValue = {
     restaurants,
     setRestaurants,
@@ -81,9 +82,7 @@ export const RestaurantProvider = ({ children }) => {
     updateRestaurant,
     setUpdateRestaurant,
     getAllRestaurants,
-    updateRestaurantById,
-    deleteRestaurant,
-    createNewRestaurant
+
 
   };
 

@@ -43,27 +43,26 @@ const CustomModal = () => {
 
   };
   const onSubmitUpdate = (data) => {
-    /* updateRestaurantById(updateRestaurant.id, data); */
-    if (mainRestaurants.length === 0) {
-      setMainRestaurants(restaurants);
-    }
-
     const index = restaurants.findIndex((restaurant) => restaurant.id === updateRestaurant.id);
-/*     const index2 = mainRestaurants.findIndex((restaurant) => restaurant.id === updateRestaurant.id);
- */    if (index !== -1) {
-      /*       const updatedMainRestaurants = [...mainRestaurants];
-            updatedMainRestaurants[index2] = { ...updatedMainRestaurants, ...data }; */
+
+    if (index !== -1) {
       const updatedRestaurants = [...restaurants];
       updatedRestaurants[index] = { ...updateRestaurant, ...data };
-      /*       setMainRestaurants(updatedMainRestaurants); */
       setRestaurants(updatedRestaurants);
 
+      const indexInMain = mainRestaurants.findIndex((restaurant) => restaurant.id === updateRestaurant.id);
+      if (indexInMain !== -1) {
+        const updatedMainRestaurants = [...mainRestaurants];
+        updatedMainRestaurants[indexInMain] = { ...updateRestaurant, ...data };
+        setMainRestaurants(updatedMainRestaurants);
+      }
     }
 
     setIsShow(false);
     setIsCreate(false);
     setRestaurantIsUpdated(true);
   };
+
 
   useEffect(() => {
     if (!isCreate && updateRestaurant) {

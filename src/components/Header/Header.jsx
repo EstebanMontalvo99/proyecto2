@@ -7,10 +7,17 @@ const Header = () => {
   const { setRestaurantPerPage, restaurantPerPage, setIsShow, setIsCreate, restaurants, setRestaurants, mainRestaurants, setMainRestaurants } = useRestaurantContext();
   const [filterApplied, setFilterApplied] = useState("Contiene");
   const [column, setColumn] = useState("name");
+  const [order, setOrder] = useState();
   const handleCreate = () => {
     setIsShow(true);
     setIsCreate(true);
   };
+
+  useEffect(() => {
+    if (restaurants.length > 0 && mainRestaurants.length === 0) {
+      setMainRestaurants([...restaurants]);
+    }
+  }, [restaurants, mainRestaurants]);
 
   const handleSelectChange = (event) => {
     setRestaurantPerPage(parseInt(event.target.value, 10));
@@ -30,7 +37,6 @@ const Header = () => {
     if (restaurants.length === 0) {
       return;
     }
-    console.log(inputValue);
 
 
     if (filterApplied === "Contiene") {
@@ -59,6 +65,23 @@ const Header = () => {
     setColumn(event.target.value);
 
   };
+  const changeSortOrder = (event) => {
+    const selectedOrder = event.target.value;
+    setOrder(selectedOrder); // Actualiza el estado
+
+    const sortedArray = [...restaurants].sort((a, b) => {
+      if (selectedOrder === "ascendent") {
+        return a[column].localeCompare(b[column]);
+      } else if (selectedOrder === "descendent") {
+        return b[column].localeCompare(a[column]);
+      }
+      return 0;
+    });
+
+    setRestaurants(sortedArray);
+  };
+
+
 
   return (
     <Container className='mb-2'>
@@ -90,6 +113,11 @@ const Header = () => {
               <option value="PostCode">PostCode</option>
               <option value="Rating">Rating</option>
               <option value="typeOfFood">Tyoe of Food</option>
+            </select>
+            <select className="p-2" onChange={changeSortOrder}>
+              <option value="">Selecciona un tipo de orden</option>
+              <option value="ascendent">Orden Ascendente</option>
+              <option value="descendent">Orden Descendente</option>
             </select>
             <button onClick={handleCreate} className='btn btn-custome'><i className='bx bxs-duplicate' ></i></button>
           </div>
