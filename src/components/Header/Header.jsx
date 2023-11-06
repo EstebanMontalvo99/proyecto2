@@ -86,7 +86,7 @@ const Header = () => {
   return (
     <Container className='mb-2'>
       <header>
-        <div className="d-flex justify-content-between align-items-center">
+        <div className="d-flex justify-content-between align-items-center flex-wrap">
           <div className="d-flex align-items-center">
             <p className="d-md-inline">Show
               <select className="m-2 p-2" value={restaurantPerPage} onChange={handleSelectChange}>
@@ -97,7 +97,7 @@ const Header = () => {
               result per page
             </p>
           </div>
-          <div className="d-flex gap-2 align-items-center">
+          <div className="d-flex gap-2 align-items-center flex-wrap">
             <input type="text" className="form-control" placeholder='Filter in records' onChange={handleFilterChange} />
             <select className='p-2' onChange={handleFilterType} >
               <option value="Contiene">Contiene</option>
